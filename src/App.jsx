@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
 
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
