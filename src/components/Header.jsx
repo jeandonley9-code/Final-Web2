@@ -8,7 +8,7 @@ function Header({ title }) {
       <h2>{title}</h2>
 
       <div className="header-actions">
-        <button onClick={() => navigate("/login")}>Login</button>
+        <button onClick={() => navigate("/login")}>Login </button>
         <button onClick={() => navigate("/profile")}>Profile</button>
         <button onClick={() => navigate("/connexion")}>Connexion</button>
       </div>
