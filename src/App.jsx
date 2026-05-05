@@ -25,21 +25,19 @@ function Layout({ children }) {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/connexion" element={<Connexion />} />
-          <Route path="/register" element={<Register />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/connexion" element={<Connexion />} />
+        <Route path="/register" element={<Register />} />
 
-          <Route path="/" element={<Layout><Accueil /></Layout>} />
-          <Route path="/demandes" element={<Layout><Demandes /></Layout>} />
-          <Route path="/messages" element={<Layout><Messages /></Layout>} />
-          <Route path="/profil" element={<Layout><Profil /></Layout>} />
-          <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        <Route path="/" element={<Layout><Accueil /></Layout>} />
+        <Route path="/demandes" element={<Layout><Demandes /></Layout>} />
+        <Route path="/messages" element={<Layout><Messages /></Layout>} />
+        <Route path="/profil" element={<Layout><Profil /></Layout>} />
+        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
 
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
