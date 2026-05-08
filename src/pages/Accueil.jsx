@@ -18,16 +18,12 @@ export default function Accueil() {
   })
 
   useEffect(() => {
-
     const stored = localStorage.getItem('demandesList')
 
-    if(stored){
-
+    if (stored) {
       const demandes = JSON.parse(stored)
 
-      const enAttente =
-        demandes.filter(d => d.statut === 'En attente').length
-
+      const enAttente = demandes.filter(d => d.statut === 'En attente').length
       const total = demandes.length
 
       setStats({
@@ -36,11 +32,9 @@ export default function Accueil() {
         enAttente: enAttente
       })
     }
-
   }, [])
 
   return (
-
     <div className="accueil">
 
       {/* HERO */}
@@ -60,16 +54,12 @@ export default function Accueil() {
 
           <div className="hero-btns">
 
-            <Link to="/demandes">
-              <button className="btn-primary">
-                Faire une demande
-              </button>
+            <Link to="/demandes" className="btn-primary">
+              Faire une demande
             </Link>
 
-            <Link to="/profil">
-              <button className="btn-outline">
-                Proposer de l'aide
-              </button>
+            <Link to="/profil" className="btn-outline">
+              Proposer de l'aide
             </Link>
 
           </div>
@@ -90,7 +80,6 @@ export default function Accueil() {
       <div className="services-grid">
 
         {services.map((s, i) => (
-
           <div key={i} className="service-card">
 
             <span className="service-icon">
@@ -102,7 +91,6 @@ export default function Accueil() {
             </span>
 
           </div>
-
         ))}
 
       </div>
@@ -111,39 +99,18 @@ export default function Accueil() {
       <div className="stats-row">
 
         <div className="stat-card">
-
-          <span className="stat-num">
-            {stats.benevoles}
-          </span>
-
-          <span className="stat-label">
-            Bénévoles actifs
-          </span>
-
+          <span className="stat-num">{stats.benevoles}</span>
+          <span className="stat-label">Bénévoles actifs</span>
         </div>
 
         <div className="stat-card">
-
-          <span className="stat-num">
-            {stats.demandes}
-          </span>
-
-          <span className="stat-label">
-            Demandes ce mois
-          </span>
-
+          <span className="stat-num">{stats.demandes}</span>
+          <span className="stat-label">Demandes ce mois</span>
         </div>
 
         <div className="stat-card">
-
-          <span className="stat-num">
-            {stats.enAttente}
-          </span>
-
-          <span className="stat-label">
-            En attente
-          </span>
-
+          <span className="stat-num">{stats.enAttente}</span>
+          <span className="stat-label">En attente</span>
         </div>
 
       </div>
