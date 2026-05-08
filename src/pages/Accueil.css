@@ -50,7 +50,7 @@
 
 /* CONTENU DROITE */
 .main-content {
-    margin-left: 250px; /* ENPÒTAN: sa evite overlap */
+    margin-left: 250px;
     padding: 20px;
     width: calc(100% - 250px);
 }
@@ -90,7 +90,42 @@
 
 .hero-btns {
     display: flex;
-    gap: 12px;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: #3b5bfc;
+    color: white;
+    padding: 12px 26px;   /* ➜ pi laj */
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    border: none;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #2f49d6;
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    padding: 6px 6px;    /* ➜ pi etwat */
+    border-radius: 5px;
+    border: 0.5px solid white;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    transition: 0.2s;
+    width: fit-content;   /* ➜ fè li pa pran twòp espas */
+    white-space: nowrap;  /* ➜ pa kase tèks la */
+}
+
+.btn-outline:hover {
+    background: white;
+    color: #1e2a4a;
 }
 
 /* SERVICES */
