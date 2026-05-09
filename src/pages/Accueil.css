@@ -26,8 +26,8 @@
 }
 
 .logo {
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 10px;
+    margin-bottom: 20px;
 }
 
 .menu {
@@ -97,11 +97,11 @@
     background: #3b5bfc;
     color: white;
     padding: 12px 26px;   /* ➜ pi laj */
-    border-radius: 8px;
+    border-radius: 3px;
     text-decoration: none;
     font-size: 14px;
     border: none;
-    display: inline-block;
+    display: flex;
     transition: 0.2s;
 }
 
@@ -112,15 +112,15 @@
 .btn-outline {
     background: transparent;
     color: white;
-    padding: 6px 6px;    /* ➜ pi etwat */
-    border-radius: 5px;
+   /* ➜ pi etwat */
+    border-radius:3px;
     border: 0.5px solid white;
     text-decoration: none;
     font-size: 14px;
-    display: inline-block;
+    display: flex;
     transition: 0.2s;
-    width: fit-content;   /* ➜ fè li pa pran twòp espas */
-    white-space: nowrap;  /* ➜ pa kase tèks la */
+    width: fit-content;   
+    white-space: nowrap;
 }
 
 .btn-outline:hover {
@@ -170,8 +170,8 @@
 
 .stat-card {
     background: white;
-    padding: 20px;
-    border-radius: 14px;
+    padding: 10px;
+    border-radius: 8px;
     text-align: center;
 }
 
