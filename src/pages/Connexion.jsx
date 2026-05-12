@@ -1,24 +1,21 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { signIn } from '../services/authServices'
 import './Connexion.css'
 
 export default function Connexion() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
-    try {
-      setErrorMessage('')
-      await signIn(email, password)
-      navigate('/')
-    } catch (error) {
-      setErrorMessage(error.message)
-    }
+    console.log({
+      email,
+      password
+    })
+
+    navigate('/')
   }
 
   return (
@@ -37,8 +34,6 @@ export default function Connexion() {
           placeholder="Mot de passe"
           onChange={e => setPassword(e.target.value)}
         />
-
-        {errorMessage && <p>{errorMessage}</p>}
 
         <button>Se connecter</button>
       </form>
