@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { signIn } from '../services/authServices'
 import './Connexion.css'
 
 export default function Connexion() {
@@ -8,87 +9,41 @@ export default function Connexion() {
   const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setErrorMessage('')
 
-    const users = JSON.parse(localStorage.getItem('users')) || []
-
-    const user = users.find(u => u.email === email)
-
-    if (!user) {
-      setErrorMessage("Compte introuvable. Créez un compte d'abord.")
-      return
+    try {
+      setErrorMessage('')
+      await signIn(email, password)
+      navigate('/')
+    } catch (error) {
+      setErrorMessage(error.message)
     }
-
-    if (user.password !== password) {
-      setErrorMessage("Mot de passe incorrect.")
-      return
-    }
-
-    // ✅ LOGIN OK
-    localStorage.setItem('isLoggedIn', 'true')
-    localStorage.setItem('currentUser', JSON.stringify(user))
-
-    navigate('/')
   }
 
   return (
     <div className="connexion-page">
-      <div className="connexion-card">
-        <div className="connexion-logo"></div>
+      <h2>Connexion</h2>
 
-        <h2>Connexion</h2>
-        <p className="connexion-sub">
-          Bienvenue sur la plateforme communautaire
-        </p>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={e => setEmail(e.target.value)}
+        />
 
-        <form onSubmit={handleSubmit}>
-         
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="votre@email.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-          </div>
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          onChange={e => setPassword(e.target.value)}
+        />
 
-          <div className="form-group">
-            <label>Mot de passe</label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-            />
-          </div>
+        {errorMessage && <p>{errorMessage}</p>}
 
-          {errorMessage && (
-            <div className="connexion-error">
-              {errorMessage}
-            </div>
-          )}
+        <button>Se connecter</button>
+      </form>
 
-          <button
-            type="submit"
-            className="btn-primary"
-            style={{ width: '100%', padding: '12px' }}
-          >
-            Se connecter
-          </button>
-
-        </form>
-
-        <p className="connexion-footer">
-          Pas encore de compte ?{' '}
-          <Link to="/register">Créer un compte</Link>
-        </p>
-
-      </div>
+      <Link to="/register">Créer un compte</Link>
     </div>
   )
 }
