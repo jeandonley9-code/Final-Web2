@@ -26,7 +26,7 @@ export default function Connexion() {
       return
     }
 
-    // Connexion réussie
+    // ✅ LOGIN OK
     localStorage.setItem('isLoggedIn', 'true')
     localStorage.setItem('currentUser', JSON.stringify(user))
 
@@ -37,10 +37,14 @@ export default function Connexion() {
     <div className="connexion-page">
       <div className="connexion-card">
         <div className="connexion-logo"></div>
+
         <h2>Connexion</h2>
-        <p className="connexion-sub">Bienvenue sur la plateforme communautaire</p>
+        <p className="connexion-sub">
+          Bienvenue sur la plateforme communautaire
+        </p>
 
         <form onSubmit={handleSubmit}>
+         
           <div className="form-group">
             <label>Email</label>
             <input
@@ -63,16 +67,27 @@ export default function Connexion() {
             />
           </div>
 
-          {errorMessage && <div className="connexion-error">{errorMessage}</div>}
+          {errorMessage && (
+            <div className="connexion-error">
+              {errorMessage}
+            </div>
+          )}
 
-          <button type="submit" className="btn-primary" style={{width:'100%', padding:'12px'}}>
+          <button
+            type="submit"
+            className="btn-primary"
+            style={{ width: '100%', padding: '12px' }}
+          >
             Se connecter
           </button>
+
         </form>
 
         <p className="connexion-footer">
-          Pas encore de compte ? <Link to="/register">Créer un compte</Link>
+          Pas encore de compte ?{' '}
+          <Link to="/register">Créer un compte</Link>
         </p>
+
       </div>
     </div>
   )
