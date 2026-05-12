@@ -1,35 +1,86 @@
-.messages-layout { display: grid; grid-template-columns: 320px 1fr; gap: 20px; height: calc(100vh - 130px); }
+import { useState } from 'react'
+import './Messages.css'
 
-.contacts-list { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
-.contacts-list h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+const contacts = [
+  { id: 1, nom: 'Jean Devley', time: '10:30', unread: 2 },
+  { id: 2, nom: 'Jolibois Towensia', time: '09:15', unread: 0 },
+  { id: 3, nom: 'Anas Jajula', time: 'Hier', unread: 1 },
+  { id: 4, nom: 'Jean Doublas', time: 'Lun', unread: 0 },
+]
 
-.contact-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px; border-radius: 10px; cursor: pointer; transition: background 0.15s;
+const initialMessages = {
+  1: [
+    { from: 'other', text: 'Bonjour, est-ce que vous pouvez m\'aider ?' },
+    { from: 'me', text: 'Oui bien sûr !' },
+  ],
+  2: [
+    { from: 'other', text: 'Merci pour votre aide.' }
+  ],
+  3: [
+    { from: 'other', text: 'Hello, avez-vous un moment ?' }
+  ],
+  4: [
+    { from: 'other', text: 'Ok super, merci !' }
+  ]
 }
-.contact-item:hover, .contact-item.active { background: #f0f4ff; }
-.contact-item.active .contact-name { color: var(--primary); }
 
-.contact-avatar {
-  width: 42px; height: 42px; border-radius: 50%;
-  background: var(--primary); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; flex-shrink: 0;
+export default function Messages() {
+  const [selectedContactId, setSelectedContactId] = useState(contacts[0].id)
+  const [input, setInput] = useState('')
+  const [messages, setMessages] = useState(initialMessages)
+
+  const selected = contacts.find(c => c.id === selectedContactId)
+  const msgs = messages[selectedContactId] || []
+
+  const send = () => {
+    if (!input.trim()) return
+    setMessages(prev => ({
+      ...prev,
+      [selectedContactId]: [...(prev[selectedContactId] || []), { from: 'me', text: input }]
+    }))
+    setInput('')
+  }
+
+  return (
+    <div className="messages-layout">
+      <div className="contacts-list card">
+        <h3>Messages</h3>
+        {contacts.map(c => {
+          const lastMsg = messages[c.id]?.slice(-1)[0]
+          return (
+            <div key={c.id} className={`contact-item ${selectedContactId === c.id ? 'active' : ''}`}
+              onClick={() => setSelectedContactId(c.id)}>
+              <div className="contact-avatar">{c.nom[0]}</div>
+              <div className="contact-info">
+                <span className="contact-name">{c.nom}</span>
+                <span className="contact-msg">{lastMsg?.text || 'Aucun message'}</span>
+              </div>
+              <div className="contact-meta">
+                <span className="contact-time">{c.time}</span>
+                {c.unread > 0 && <span className="unread-badge">{c.unread}</span>}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="chat-area card">
+        <div className="chat-header">
+          <div className="contact-avatar">{selected.nom[0]}</div>
+          <span className="chat-name">{selected.nom}</span>
+        </div>
+        <div className="chat-messages">
+          {msgs.map((m, i) => (
+            <div key={i} className={`bubble ${m.from}`}>{m.text}</div>
+          ))}
+        </div>
+        <div className="chat-input">
+          <input placeholder="Écrire un message..."
+            value={input} onChange={e => setInput(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && send()} />
+          <button className="btn-primary" onClick={send}>Envoyer</button>
+        </div>
+      </div>
+    </div>
+  )
 }
-.contact-info { flex: 1; overflow: hidden; }
-.contact-name { display: block; font-size: 14px; font-weight: 600; }
-.contact-msg { display: block; font-size: 12px; color: var(--text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.contact-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.contact-time { font-size: 11px; color: var(--text-light); }
-.unread-badge { background: var(--primary); color: white; font-size: 11px; font-weight: 600; border-radius: 10px; padding: 2px 7px; }
-
-.chat-area { display: flex; flex-direction: column; overflow: hidden; }
-.chat-header { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-.chat-name { font-weight: 600; font-size: 15px; }
-.chat-messages { flex: 1; overflow-y: auto; padding: 16px 0; display: flex; flex-direction: column; gap: 10px; }
-.bubble { max-width: 60%; padding: 10px 16px; border-radius: 14px; font-size: 14px; }
-.bubble.other { background: #f0f4ff; color: var(--text); align-self: flex-start; }
-.bubble.me { background: var(--primary); color: white; align-self: flex-end; }
-.chat-input { display: flex; gap: 10px; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 14px; }
-.chat-input input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Poppins', sans-serif; outline: none; }
-.chat-input input:focus { border-color: var(--primary); }
