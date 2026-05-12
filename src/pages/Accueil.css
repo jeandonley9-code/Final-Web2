@@ -24,7 +24,7 @@
     left: 0;
     top: 0;
 }
-
+ 
 .logo {
     font-size: 10px;
     margin-bottom: 20px;
@@ -96,7 +96,7 @@
 .btn-primary {
     background: #3b5bfc;
     color: white;
-    padding: 12px 26px;   /* ➜ pi laj */
+    padding: 12px 26px;
     border-radius: 3px;
     text-decoration: none;
     font-size: 14px;
@@ -112,7 +112,6 @@
 .btn-outline {
     background: transparent;
     color: white;
-   /* ➜ pi etwat */
     border-radius:3px;
     border: 0.5px solid white;
     text-decoration: none;
@@ -179,4 +178,38 @@
     font-size: 30px;
     font-weight: bold;
     color: #3b5bfc;
+}
+
+/* ========================= */
+/* AJOUT ONLY - LOGIN ALERT */
+/* ========================= */
+
+.auth-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe5e5;
+    border: 1px solid #ff4d4d;
+    color: #1e2a4a;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 9999;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.auth-alert button {
+    margin-top: 10px;
+    padding: 6px 14px;
+    border: none;
+    background: #3b5bfc;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-alert button:hover {
+    background: #2f49d6;
 }

@@ -17,7 +17,20 @@ export default function Accueil() {
     enAttente: 0
   })
 
+  // AJOUT LOGIN SYSTEM
+  const [isLogged, setIsLogged] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+
   useEffect(() => {
+
+    const user = localStorage.getItem("user")
+
+    if (user) {
+      setIsLogged(true)
+    } else {
+      setIsLogged(false)
+    }
+
     const stored = localStorage.getItem('demandesList')
 
     if (stored) {
@@ -32,10 +45,26 @@ export default function Accueil() {
         enAttente: enAttente
       })
     }
+
   }, [])
+
+  const handleProtectedClick = (e) => {
+    if (!isLogged) {
+      e.preventDefault()
+      setShowAlert(true)
+    }
+  }
 
   return (
     <div className="accueil">
+
+      {/* ALERT */}
+      {showAlert && (
+        <div className="auth-alert">
+          <p>⚠️ Vous n'avez pas de compte . Creez un Compte!!!</p>
+          <button onClick={() => setShowAlert(false)}>OK</button>
+        </div>
+      )}
 
       {/* HERO */}
       <div className="hero">
@@ -54,11 +83,19 @@ export default function Accueil() {
 
           <div className="hero-btns">
 
-            <Link to="/demandes" className="btn-primary">
+            <Link
+              to="/demandes"
+              className="btn-primary"
+              onClick={handleProtectedClick}
+            >
               Faire une demande
             </Link>
 
-            <Link to="/profil" className="btn-outline">
+            <Link
+              to="/profil"
+              className="btn-outline"
+              onClick={handleProtectedClick}
+            >
               Proposer de l'aide
             </Link>
 
