@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import './Accueil.css'
 
 const services = [
@@ -17,26 +18,32 @@ export default function Accueil() {
     enAttente: 0
   })
 
-  // AJOUT LOGIN SYSTEM
+  // LOGIN SYSTEM
   const [isLogged, setIsLogged] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
 
   useEffect(() => {
 
-    const user = localStorage.getItem("user")
+    // Vérification connexion
+    const isLoggedIn = localStorage.getItem('isLoggedIn')
+    const currentUser = localStorage.getItem('currentUser')
 
-    if (user) {
+    if (isLoggedIn === 'true' && currentUser) {
       setIsLogged(true)
     } else {
       setIsLogged(false)
     }
 
+    // Stats
     const stored = localStorage.getItem('demandesList')
 
     if (stored) {
       const demandes = JSON.parse(stored)
 
-      const enAttente = demandes.filter(d => d.statut === 'En attente').length
+      const enAttente = demandes.filter(
+        d => d.statut === 'En attente'
+      ).length
+
       const total = demandes.length
 
       setStats({
@@ -48,6 +55,7 @@ export default function Accueil() {
 
   }, [])
 
+  // Protection des boutons
   const handleProtectedClick = (e) => {
     if (!isLogged) {
       e.preventDefault()
@@ -61,8 +69,13 @@ export default function Accueil() {
       {/* ALERT */}
       {showAlert && (
         <div className="auth-alert">
-          <p>⚠️ Vous n'avez pas de compte . Creez un Compte!!!</p>
-          <button onClick={() => setShowAlert(false)}>OK</button>
+          <p>
+            ⚠️ Vous devez créer un compte et vous connecter.
+          </p>
+
+          <button onClick={() => setShowAlert(false)}>
+            OK
+          </button>
         </div>
       )}
 
@@ -136,18 +149,33 @@ export default function Accueil() {
       <div className="stats-row">
 
         <div className="stat-card">
-          <span className="stat-num">{stats.benevoles}</span>
-          <span className="stat-label">Bénévoles actifs</span>
+          <span className="stat-num">
+            {stats.benevoles}
+          </span>
+
+          <span className="stat-label">
+            Bénévoles actifs
+          </span>
         </div>
 
         <div className="stat-card">
-          <span className="stat-num">{stats.demandes}</span>
-          <span className="stat-label">Demandes ce mois</span>
+          <span className="stat-num">
+            {stats.demandes}
+          </span>
+
+          <span className="stat-label">
+            Demandes ce mois
+          </span>
         </div>
 
         <div className="stat-card">
-          <span className="stat-num">{stats.enAttente}</span>
-          <span className="stat-label">En attente</span>
+          <span className="stat-num">
+            {stats.enAttente}
+          </span>
+
+          <span className="stat-label">
+            En attente
+          </span>
         </div>
 
       </div>
