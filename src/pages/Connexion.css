@@ -35,15 +35,16 @@
   padding: 12px;
   border: none;
   border-radius: 6px;
-  background-color: blue;
-  color: white;
+  background-color: rgb(174, 174, 207);
+  color:white
+  (54, 19, 209);
   font-size: 16px;
   cursor: pointer;
 }
 
-.connexion-page button:hover {
+/* .connexion-page button:hover {
   background-color: #0056b3;
-}
+} */
 
 .connexion-page a {
   display: inline-block;
