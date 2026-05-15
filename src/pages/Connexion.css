@@ -41,10 +41,9 @@
   font-size: 16px;
   cursor: pointer;
 }
-
-/* .connexion-page button:hover {
+ .connexion-page button:hover {
   background-color: #0056b3;
-} */
+} 
 
 .connexion-page a {
   display: inline-block;
