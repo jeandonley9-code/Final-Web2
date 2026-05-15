@@ -7,7 +7,7 @@ const links = [
   { to: '/demandes', label: 'Demandes', icon: '📋' },
   { to: '/messages', label: 'Messages', icon: '💬' },
   { to: '/profil', label: 'Profil', icon: '👤' },
-  { to: '/dashboard', label: 'Dashboard', icon: '📊' },
+
  
 ]
 
