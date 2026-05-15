@@ -8,13 +8,14 @@
 
 body {
   overflow-x: hidden;
+  background: #f5f7fb;
 }
 
 /* LAYOUT GLOBAL */
 .app-container {
   display: flex;
   min-height: 100vh;
-  background: #f5f7fb;
+  width: 100%;
 }
 
 /* SIDEBAR */
@@ -27,6 +28,7 @@ body {
   height: 100vh;
   left: 0;
   top: 0;
+  overflow-y: auto;
 }
 
 .logo {
@@ -85,6 +87,12 @@ body {
   color: white;
   padding: 36px;
   border-radius: 16px;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
 }
 
 .hero-text h2 {
@@ -111,6 +119,9 @@ body {
 
 .hero-image {
   font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* BUTTONS */
@@ -124,6 +135,9 @@ body {
   border: none;
   cursor: pointer;
   transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary:hover {
@@ -140,6 +154,9 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-outline:hover {
@@ -159,17 +176,20 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 16px;
+  width: 100%;
 }
 
 .service-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px;
   background: white;
   border-radius: 14px;
   cursor: pointer;
   transition: 0.2s;
+  text-align: center;
 }
 
 .service-card:hover {
@@ -187,6 +207,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
+  width: 100%;
 }
 
 .stat-card {
@@ -200,6 +221,13 @@ body {
   font-size: 28px;
   font-weight: bold;
   color: #3b5bfc;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
 }
 
 /* ALERT */
@@ -242,10 +270,19 @@ body {
   .main-content {
     margin-left: 0;
     width: 100%;
+    padding: 15px;
   }
 
   .hero {
     flex-direction: column;
     text-align: center;
+  }
+
+  .hero-btns {
+    justify-content: center;
+  }
+
+  .hero-image {
+    font-size: 50px;
   }
 }

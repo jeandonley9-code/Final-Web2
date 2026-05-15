@@ -18,21 +18,7 @@ export default function Accueil() {
     enAttente: 0
   })
 
-  // LOGIN SYSTEM
-  const [isLogged, setIsLogged] = useState(false)
-  const [showAlert, setShowAlert] = useState(false)
-
   useEffect(() => {
-
-    // Vérification connexion
-    const isLoggedIn = localStorage.getItem('isLoggedIn')
-    const currentUser = localStorage.getItem('currentUser')
-
-    if (isLoggedIn === 'true' && currentUser) {
-      setIsLogged(true)
-    } else {
-      setIsLogged(false)
-    }
 
     // Stats
     const stored = localStorage.getItem('demandesList')
@@ -55,29 +41,8 @@ export default function Accueil() {
 
   }, [])
 
-  // Protection des boutons
-  const handleProtectedClick = (e) => {
-    if (!isLogged) {
-      e.preventDefault()
-      setShowAlert(true)
-    }
-  }
-
   return (
     <div className="accueil">
-
-      {/* ALERT */}
-      {showAlert && (
-        <div className="auth-alert">
-          <p>
-            ⚠️ Vous devez créer un compte et vous connecter.
-          </p>
-
-          <button onClick={() => setShowAlert(false)}>
-            OK
-          </button>
-        </div>
-      )}
 
       {/* HERO */}
       <div className="hero">
@@ -99,7 +64,6 @@ export default function Accueil() {
             <Link
               to="/demandes"
               className="btn-primary"
-              onClick={handleProtectedClick}
             >
               Faire une demande
             </Link>
@@ -107,7 +71,6 @@ export default function Accueil() {
             <Link
               to="/profil"
               className="btn-outline"
-              onClick={handleProtectedClick}
             >
               Proposer de l'aide
             </Link>
