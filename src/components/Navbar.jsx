@@ -8,7 +8,7 @@ const titles = {
   '/demandes': 'Demandes',
   '/messages': 'Messages',
   '/profil': 'Mon Profil',
-  '/dashboard': 'Dashboard',
+ 
   '/connexion': 'Connexion',
 }
 
