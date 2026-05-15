@@ -10,7 +10,7 @@ import Register from './pages/Register'
 import Profil from './pages/Profil'
 import Demandes from './pages/Demandes'
 import Messages from './pages/Messages'
-import Dashboard from './pages/Dashboard'
+
 
 function Layout({ children }) {
   return (
@@ -35,7 +35,7 @@ export default function App() {
         <Route path="/demandes" element={<Layout><Demandes /></Layout>} />
         <Route path="/messages" element={<Layout><Messages /></Layout>} />
         <Route path="/profil" element={<Layout><Profil /></Layout>} />
-        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
